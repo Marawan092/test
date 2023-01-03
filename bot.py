@@ -27,3 +27,5 @@ def start(bot, msg) :
 chat_id = msg.chat.id
 link= red.hdel("link",chat_id)
 msg.reply(تم مسح الرابط)
+
+bot.run()
