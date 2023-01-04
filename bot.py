@@ -1,31 +1,143 @@
-from pyrogram import Client, filters
-Bot = Client ('Bot')
-import redis
-red = redis.StrictRedis(decode_responses=True) 
 
 
-admin = [5571985743,2091654958]
-token = "5469397024:AAFBNnPsgYyyOZgyxkoyO8a77M3O6kWeDX8"
-bot = pyrogram.Pyrogram(token)
-sudo = 5571985743
+import os
 
-@bot.on_message(filers.command('انشاء الرابط'))
-def start(bot, msg) :
-chat_id = msg.chat.id
-Text = msg.text.split(None, 1)[1]
-red.hset("link",chat_id, text)
-msg.reply(f"saved: (text)")
+try:
 
-@bot.on_message(filers.command('الرابط'))
-def startt(bot, msg) :
-chat_id = msg.chat.id
-link= red.hget("link",chat_id)
-msg.reply(f"{'مفيش رابط' if link ==None else link}")
+  from pyrogram import Client, filters
 
-@bot.on_message(filers.command('مسح الرابط'))
-def starttt(bot, msg) :
-chat_id = msg.chat.id
-link= red.hdel("link",chat_id)
-msg.reply(تم مسح الرابط)
+except:
 
-bot.run()
+  os.system("pip install pyrogram")
+
+  from pyrogram import Client, filters
+
+import sqlite3
+
+db = sqlite3.connect('rotbah.db',check_same_thread=False)
+
+cr = db.cursor()
+
+cr.execute("CREATE TABLE IF NOT EXISTS msgtext (chat_id TEXT, user_id TEXT)")
+
+def add_chat_message_0text(chat_id,user_id):
+
+  try:
+
+    cr.execute(f"insert into msgtext (chat_id,user_id) values ('{chat_id}', '{user_id}')")
+
+    db.commit()
+
+    return True
+
+  except Exception as e:
+
+    return e
+
+def show_chat_message_0text(chat_id,user_id):
+
+  try:
+
+    cr.execute(f"select * from msgtext where chat_id = '{chat_id}' and user_id = '{user_id}'")
+
+    return cr.fetchall()
+
+  except Exception as e:
+
+    return e
+
+bot_token = "***"
+
+api_hash ="***"
+
+api_id = 5571985743
+
+client = Client(name='client', bot_token=bot_token,
+
+             api_id=api_id, api_hash=api_hash)
+
+@client.on_message(filters.regex("^رسائلي$") & filters.group)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import os
+try:
+  from pyrogram import Client, filters
+except:
+  os.system("pip install pyrogram")
+  from pyrogram import Client, filters
+import sqlite3
+
+db = sqlite3.connect('rotbah.db',check_same_thread=False)
+cr = db.cursor()
+cr.execute("CREATE TABLE IF NOT EXISTS msgtext (chat_id TEXT, user_id TEXT)")
+
+def add_chat_message_0text(chat_id,user_id):
+  try:
+    cr.execute(f"insert into msgtext (chat_id,user_id) values ('{chat_id}', '{user_id}')")
+    db.commit()
+    return True
+  except Exception as e:
+    return e
+
+def show_chat_message_0text(chat_id,user_id):
+  try:
+    cr.execute(f"select * from msgtext where chat_id = '{chat_id}' and user_id = '{user_id}'")
+    return cr.fetchall()
+  except Exception as e:
+    return e
+
+bot_token = "5558622193:AAGa1VO_zYSZ2uFwRC_yD6cuPipjfzchYZk"
+api_hash ="d0352df3ddb5e00bcf16b55dae071b52"
+api_id = 11750778
+
+client = Client(name='client', bot_token=bot_token,
+             api_id=api_id, api_hash=api_hash)
+
+@client.on_message(filters.regex("^رسائلي$") & filters.group)
+async def delrdood(app,message):
+   await message.reply(f"-› عدد رسائلك : {len(show_chat_message_0text(message.chat.id,message.from_user.id))}")
+
+@client.on_message(filters.text & filters.group, group=1)
+async def gettt_rd(app, message):
+   add_chat_message_0text(message.chat.id,message.from_user.id)
+
+client.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
