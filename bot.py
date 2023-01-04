@@ -17,13 +17,13 @@ red.hset("link",chat_id, text)
 msg.reply(f"saved: (text)")
 
 @bot.on_message(filers.command('الرابط'))
-def start(bot, msg) :
+def startt(bot, msg) :
 chat_id = msg.chat.id
 link= red.hget("link",chat_id)
 msg.reply(f"{'مفيش رابط' if link ==None else link}")
 
 @bot.on_message(filers.command('مسح الرابط'))
-def start(bot, msg) :
+def starttt(bot, msg) :
 chat_id = msg.chat.id
 link= red.hdel("link",chat_id)
 msg.reply(تم مسح الرابط)
